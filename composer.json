@@ -22,8 +22,8 @@
     },
     "require-dev": {
         "yiisoft/yii2-redis": "2.0.19",
-        "php-amqplib/php-amqplib": "^3.0.0",
-        "enqueue/amqp-lib": "^0.10.0",
+        "php-amqplib/php-amqplib": "^2.8.0||^3.0.0",
+        "enqueue/amqp-lib": "^0.8||^0.9.10||^0.10.0",
         "pda/pheanstalk": "~3.2.1",
         "opis/closure": "*",
         "yiisoft/yii2-debug": "~2.1.0",
