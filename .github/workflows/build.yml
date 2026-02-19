@@ -16,7 +16,6 @@ on:
       - '.editorconfig'
 
   push:
-    branches: [ 'master' ]
     paths-ignore: *ignore-paths
 
 env:
