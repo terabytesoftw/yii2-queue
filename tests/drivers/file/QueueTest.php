@@ -131,7 +131,7 @@ class QueueTest extends CliTestCase
         return Yii::$app->fileQueue;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->getQueue()->messageHandler = null;
         foreach (glob(Yii::getAlias("@runtime/queue/*")) as $fileName) {

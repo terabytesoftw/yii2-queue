@@ -1,0 +1,44 @@
+name: build
+
+on:
+  pull_request:
+    paths-ignore: &ignore-paths
+      - 'docs/**'
+      - '.github/CONTRIBUTING.md'
+      - '.github/FUNDING.yml'
+      - '.github/SECURITY.md'
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'LICENSE.md'
+      - 'UPGRADE.md'
+      - '.gitignore'
+      - '.gitattributes'
+      - '.editorconfig'
+
+  push:
+    branches: [ 'master' ]
+    paths-ignore: *ignore-paths
+
+env:
+  COMPOSE_PROJECT_NAME: yii2-queue
+  COMPOSE_FILE: tests/docker-compose.yml
+jobs:
+  phpunit:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5' ]
+    steps:
+      - name: Checkout.
+        uses: actions/checkout@v2
+
+      - name: PHP Unit tests for PHP ${{ matrix.php }}
+        run: make test v=${{ matrix.php }}
+
+      - name: Upload coverage to Codecov.
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}

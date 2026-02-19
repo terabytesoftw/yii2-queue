@@ -63,7 +63,10 @@ abstract class CliTestCase extends TestCase
     {
         $class = new \ReflectionClass($this->getQueue());
         $method = $class->getMethod('getCommandId');
-        $method->setAccessible(true);
+
+        if (\PHP_VERSION_ID <= 80100) {
+            $method->setAccessible(true);
+        }
 
         $replace = [
             'php' => PHP_BINARY,
@@ -84,7 +87,7 @@ abstract class CliTestCase extends TestCase
     /**
      * @inheritdoc
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         if (file_exists(PriorityJob::getFileName())) {
             unlink(PriorityJob::getFileName());
