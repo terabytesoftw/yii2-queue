@@ -16,7 +16,7 @@
         "docs": "https://github.com/yiisoft/yii2-queue/blob/master/docs/guide"
     },
     "require": {
-        "php": ">=7.4.0",
+        "php": ">=7.4",
         "yiisoft/yii2": "~2.0.54",
         "symfony/process": "^5.0||^6.0||^7.0"
     },

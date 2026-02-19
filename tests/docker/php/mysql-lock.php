@@ -1,6 +1,5 @@
 #!/usr/bin/env php
 <?php
-
 /**
  * Runs a command with network sync using MySQL.
  *
